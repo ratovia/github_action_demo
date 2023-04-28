@@ -1,16 +1,19 @@
 name: Hello World by sub_repository
 
-on: [push]
+on:
+  push:
+    paths:
+      - "sub_repository/**"
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        path: 'sub_repository'
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          path: "sub_repository"
 
-    - name: Say Hello
-      run: echo "Hello, World! by sub_repository"
+      - name: Say Hello
+        run: echo "Hello, World! by sub_repository"
