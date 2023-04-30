@@ -2,9 +2,9 @@ name: Hello World by sub_repository
 
 on:
   push:
-    branches: [develop]
+    # branches: [develop]
     paths:
-      - "sub_repository/**"
+      - "github-actions/sub_repository/**"
 
 jobs:
   build:
@@ -17,4 +17,4 @@ jobs:
           path: "sub_repository"
 
       - name: Say Hello
-        run: echo "Hello, World! by sub_repository"
+        run: echo "Hello, World!!! by sub_repository"
