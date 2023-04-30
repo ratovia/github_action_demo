@@ -2,8 +2,8 @@ name: Hello World by sub_repository
 
 on:
   push:
-    paths:
-      - "sub_repository/**"
+    branches: [develop]
+    paths: [sub_repository/**]
 
 defaults:
   run:
