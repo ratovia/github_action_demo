@@ -2,9 +2,8 @@ name: Hello World by sub_repository
 
 on:
   push:
-    # branches: [develop]
     paths:
-      - "github_action_demo/sub_repository/**"
+      - "sub_repository/**"
 
 jobs:
   build:
