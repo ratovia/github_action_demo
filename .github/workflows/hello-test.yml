@@ -5,6 +5,10 @@ on:
     paths:
       - "sub_repository/**"
 
+defaults:
+  run:
+    working-directory: sub_repository
+
 jobs:
   build:
     runs-on: ubuntu-latest
