@@ -4,7 +4,7 @@ on:
   push:
     # branches: [develop]
     paths:
-      - "github-action_demo/sub_repository/**"
+      - "github_action_demo/sub_repository/**"
 
 jobs:
   build:
@@ -16,5 +16,5 @@ jobs:
         with:
           path: "sub_repository"
 
-      - name: Say Hello
+      - name: Say Hello By sub_repository
         run: echo "Hello, World!!! by sub_repository"
