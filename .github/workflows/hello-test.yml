@@ -2,7 +2,6 @@ name: Hello World by sub_repository
 
 on:
   push:
-    branches: [develop]
     paths: [sub_repository/**]
 
 defaults:
@@ -15,9 +14,14 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: "sub_repository"
 
-      - name: Say Hello By sub_repository
-        run: echo "Hello, World!!! by sub_repository"
+      - name: Say Hello By sub_repository on develop
+        if: contains(toJSON(github.ref), 'develop')
+        run: echo "Hello, World!!! by sub_repository on develop"
+
+      - name: Say Hello By sub_repository on main
+        if: contains(toJSON(github.ref), 'main')
+        run: echo "Hello, World!!! by sub_repository on main"
