@@ -4,7 +4,7 @@ on:
   push:
     # branches: [develop]
     paths:
-      - "github-actions/sub_repository/**"
+      - "github-action_demo/sub_repository/**"
 
 jobs:
   build:
