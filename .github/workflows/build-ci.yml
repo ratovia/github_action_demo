@@ -17,9 +17,7 @@ jobs:
 
       - name: Install ansible
         run: |
-          sudo apt update
           sudo apt install ansible
-          ansible-galaxy collection install community.general
 
       - name: Run Ansible playbook
         run: ansible-playbook ansible/playbook.yml --connection=local
