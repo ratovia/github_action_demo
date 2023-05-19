@@ -2,6 +2,10 @@
 - name: "Ping Task"
   ping:
 
-- name: "uname -a"
-  command: uname -a
-  register: uname_a
+- name: Run uname -a
+  shell: uname -a
+  register: uname_output
+
+- name: Display uname -a output
+  debug:
+    var: uname_output.stdout_lines
