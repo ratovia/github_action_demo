@@ -4,7 +4,7 @@ on: push
 
 jobs:
   build_and_release:
-    runs-on: self-hosted
+    runs-on: [self-hosted, linux, ARM64]
 
     steps:
       # - name: Set up QEMU
