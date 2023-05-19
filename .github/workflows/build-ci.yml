@@ -4,7 +4,7 @@ on: push
 
 jobs:
   build_and_release:
-    runs-on: ubuntu-latest
+    runs-on: arm64v8/ubuntu
 
     steps:
       - name: Set up QEMU
