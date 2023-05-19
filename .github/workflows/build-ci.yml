@@ -4,13 +4,13 @@ on: push
 
 jobs:
   build_and_release:
-    runs-on: arm64v8/ubuntu:jammy
+    runs-on: self-hosted
 
     steps:
       # - name: Set up QEMU
       #   uses: docker/setup-qemu-action@v2
       #   with:
-      #     platforms: arm64
+      #       platforms: linux/arm64
 
       - name: Checkout upstream repo
         uses: actions/checkout@v3
