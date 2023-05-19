@@ -1,3 +1,7 @@
 ---
 - name: "Ping Task"
   ping:
+
+- name: "uname -a"
+  command: uname -a
+  register: uname_a
