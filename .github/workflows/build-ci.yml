@@ -5,11 +5,10 @@ on: push
 jobs:
   build_and_release:
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:22.04
-      arch: arm64
 
     steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
 
       - name: Checkout upstream repo
         uses: actions/checkout@v3
