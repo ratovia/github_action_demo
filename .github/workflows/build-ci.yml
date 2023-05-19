@@ -1,0 +1,29 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'hoge-*'
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:22.04
+      arch: arm64
+
+    steps:
+
+      - name: Checkout upstream repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Install ansible
+        run: |
+          sudo apt update
+          sudo apt install ansible
+          ansible-galaxy collection install community.general
+
+      - name: Run Ansible playbook
+        run: ansible-playbook ansible/playbook.yml --connection=local
