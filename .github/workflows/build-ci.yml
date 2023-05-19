@@ -1,9 +1,6 @@
 name: Build and Release
 
-on:
-  push:
-    tags:
-      - 'hoge-*'
+on: push
 
 jobs:
   build_and_release:
