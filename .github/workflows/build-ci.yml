@@ -7,19 +7,27 @@ jobs:
     runs-on: arm64v8/ubuntu
 
     steps:
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-        with:
-            platforms: linux/arm64
-
       - name: Checkout upstream repo
         uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Install ansible
-        run: |
-          sudo apt install ansible
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
 
-      - name: Run Ansible playbook
-        run: ansible-playbook ansible/playbook.yml --connection=local
+      - run: |
+          docker run --rm -i -v $PWD:/workspace arm64v8/ubuntu:22.04 bash << EOF
+          set -xeu
+          cd /workspace
+          uname -a
+          apt install ansible
+          ls ansible/playbook.yml
+          ansible-playbook ansible/playbook.yml --connection=local
+          EOF
+
+      # - name: Install ansible
+      #   run: |
+      #     sudo apt install ansible
+
+      # - name: Run Ansible playbook
+      #   run: ansible-playbook ansible/playbook.yml --connection=local
