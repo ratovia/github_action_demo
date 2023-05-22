@@ -20,6 +20,7 @@ jobs:
           set -xeu
           cd /workspace
           uname -a
+          apt update
           apt install ansible
           ls ansible/playbook.yml
           ansible-playbook ansible/playbook.yml --connection=local
