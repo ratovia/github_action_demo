@@ -20,8 +20,8 @@ jobs:
           set -xeu
           cd /workspace
           uname -a
-          apt update
-          apt install ansible
+          apt update -y
+          apt install ansible -y
           ls ansible/playbook.yml
           ansible-playbook ansible/playbook.yml --connection=local
           EOF
