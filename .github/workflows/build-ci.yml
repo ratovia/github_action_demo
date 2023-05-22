@@ -16,16 +16,8 @@ jobs:
         uses: docker/setup-qemu-action@v2
 
       - run: |
-          docker run --rm -i -v $PWD:/workspace arm64v8/ubuntu:22.04 bash << EOF
-          set -xeu
-          cd /workspace
-          uname -a
-          apt update -y
-          apt install ansible -y
-          ls ansible/playbook.yml
-          ansible-playbook ansible/playbook.yml --connection=local
-          uname -a
-          EOF
+          docker build -t arm64-image ./docker/
+          docker run --rm -v $PWD:/workspace arm64-image
 
       # - name: Install ansible
       #   run: |
