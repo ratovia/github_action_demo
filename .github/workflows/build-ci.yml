@@ -22,7 +22,7 @@ jobs:
         run: docker build -t arm64-image ./docker/
 
       - name: Docker コンテナの実行
-        run: docker run --rm -v $PWD:/workspace arm64-image bash -c "uname -a && ansible-playbook /workspace/ansible/playbook.yml --connection=local && touch test.txt"
+        run: docker run --rm -v $PWD:/workspace arm64-image bash -c "uname -a && ansible-playbook /workspace/ansible/playbook.yml --connection=local"
 
       # - name: Create Release
       #   id: create_release
@@ -49,4 +49,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: test.txt
+          files: archive/test.txt
