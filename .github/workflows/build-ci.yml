@@ -24,6 +24,7 @@ jobs:
           apt install ansible -y
           ls ansible/playbook.yml
           ansible-playbook ansible/playbook.yml --connection=local
+          uname -a
           EOF
 
       # - name: Install ansible
