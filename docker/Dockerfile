@@ -2,8 +2,7 @@ FROM arm64v8/ubuntu:22.04
 
 COPY . /workspace
 
-RUN set -xeu \
-    && apt update -y \
+RUN apt update -y \
     && apt install ansible -y
 
 WORKDIR /workspace

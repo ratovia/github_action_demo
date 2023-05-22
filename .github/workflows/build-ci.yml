@@ -1,27 +1,23 @@
 name: Build and Release
 
-on: push
+on:
+  push:
 
 jobs:
   build_and_release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout upstream repo
+      - name: リポジトリのチェックアウト
         uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Set up QEMU
+      - name: QEMU のセットアップ
         uses: docker/setup-qemu-action@v2
 
-      - run: |
-          docker build -t arm64-image ./docker/
-          docker run --rm -v $PWD:/workspace arm64-image
+      - name: Docker イメージのビルド
+        run: docker build -t arm64-image ./docker/
 
-      # - name: Install ansible
-      #   run: |
-      #     sudo apt install ansible
-
-      # - name: Run Ansible playbook
-      #   run: ansible-playbook ansible/playbook.yml --connection=local
+      - name: Docker コンテナの実行
+        run: docker run --rm -v $PWD:/workspace arm64-image bash -c "uname -a && ansible-playbook /workspace/ansible/playbook.yml --connection=local"
