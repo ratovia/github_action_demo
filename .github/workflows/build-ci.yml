@@ -20,4 +20,25 @@ jobs:
         run: docker build -t arm64-image ./docker/
 
       - name: Docker コンテナの実行
-        run: docker run --rm -v $PWD:/workspace arm64-image bash -c "uname -a && ansible-playbook /workspace/ansible/playbook.yml --connection=local"
+        run: docker run --rm -v $PWD:/workspace arm64-image bash -c "uname -a && ansible-playbook /workspace/ansible/playbook.yml --connection=local && touch test.txt"
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: /workspace
+          asset_name: test.txt
+          asset_content_type: text/plain
